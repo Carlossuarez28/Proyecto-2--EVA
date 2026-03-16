@@ -1,6 +1,6 @@
-import { Cultivo } from "./Cultivo";
-import { Parcela } from "./Parcela";
-import { Granjero } from "./Granjero";
+import { Cultivo } from "../ClasesJs/Cultivo.js";
+import { Parcela } from "../ClasesJs/Parcela.js";
+import { Granjero } from "../ClasesJs/Granjero.js";
 
 const CATALOGO = {
     "Tomate": { tiempo: 10, valor: 20 },
@@ -12,18 +12,18 @@ const ICONOS = {
 };
 
 
-this.granjero = new Granjero();
-this.parcelas = Array.from({ length: 9 }, (_, i) => new Parcela(i));
-this.renderizar(); setInterval(() => this.renderizar(), 1000);
+const granjero = new Granjero();
+const parcelas = Array.from({ length: 9 }, (_, i) => new Parcela(i));
+renderizar(); setInterval(() => renderizar(), 1000);
 
 function renderizar() {
     const contenedor = document.getElementById("terreno");
     contenedor.innerHTML = "";
     const selector = document.getElementById("selectorSemillas");
-    selector.options[0].text = `Tomate (Stock: ${this.granjero.semillas["Tomate"]})`;
-    selector.options[1].text = `Calabaza (Stock: ${this.granjero.semillas["Calabaza"]})`;
+    selector.options[0].text = `Tomate (Stock: ${granjero.semillas["Tomate"]})`;
+    selector.options[1].text = `Calabaza (Stock: ${granjero.semillas["Calabaza"]})`;
 
-    this.parcelas.forEach(p => {
+    parcelas.forEach(p => {
         const div = document.createElement("div");
         div.className = "parcela";
         if (p.cultivoActual) {
@@ -33,10 +33,10 @@ function renderizar() {
                                  <div class="tiempo">${!p.estaListo() ? p.tiempoRestante() + "s" : ""}</div>
                                  <div class="barra"><div class="progreso" style="width:${p.progreso() * 100}%"></div></div>`;
         }
-        div.onclick = () => this.gestionarClick(p);
+        div.onclick = () => gestionarClick(p);
         contenedor.appendChild(div);
     });
-    document.getElementById("dinero").innerText = this.granjero.dinero;
+    document.getElementById("dinero").innerText = granjero.dinero;
 }
 
 function gestionarClick(parcela) {
@@ -44,8 +44,8 @@ function gestionarClick(parcela) {
     const aviso = document.getElementById("mensaje-sistema");
 
     if (!parcela.cultivoActual) {
-        if (this.granjero.semillas[tipo] > 0) {
-            this.granjero.semillas[tipo]--;
+        if (granjero.semillas[tipo] > 0) {
+            granjero.semillas[tipo]--;
             parcela.plantar(new Cultivo(tipo, CATALOGO[tipo].tiempo));
             aviso.innerText = "";
         } else {
@@ -53,13 +53,13 @@ function gestionarClick(parcela) {
             setTimeout(() => aviso.innerText = "", 2000);
         }
     } else if (parcela.estaListo()) {
-        this.granjero.dinero += CATALOGO[parcela.cultivoActual.nombre].valor;
+        granjero.dinero += CATALOGO[parcela.cultivoActual.nombre].valor;
         parcela.cultivoActual = null;
     }
-    this.renderizar();
+    renderizar();
 }
 
 function recargarRecursos() {
-    this.granjero.semillas["Tomate"] += 10;
-    this.granjero.semillas["Calabaza"] += 10; this.renderizar();
+    granjero.semillas["Tomate"] += 10;
+    granjero.semillas["Calabaza"] += 10; renderizar();
 }
