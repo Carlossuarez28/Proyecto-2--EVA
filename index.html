@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mi Granja</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+    <header>
+        <h1>Mi Granja</h1>
+        <p>Dinero: <span id="dinero">100</span></p>
+
+        
+        
+        
+        <div id="mensaje-sistema"></div>
+
+        <label for="selectorSemillas">Semilla a plantar:</label>
+        <select id="selectorSemillas">
+            <option value="Tomate">Tomate </option>
+            <option value="Calabaza">Calabaza </option>
+        </select>
+    </header>
+
+    <main id="terreno" class="grid-terreno"></main>
+    
+    <button onclick="recargarRecursos()">Recargar Semillas (Debug)</button>
+    <script type="module" src="controlador.js"></script>
+</body>
+</html>

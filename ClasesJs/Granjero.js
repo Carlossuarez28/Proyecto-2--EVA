@@ -1,0 +1,4 @@
+export class Granjero { constructor(){ 
+    this.dinero = 100; 
+    this.semillas = { "Tomate": 5, "Calabaza": 5 }; } 
+}
