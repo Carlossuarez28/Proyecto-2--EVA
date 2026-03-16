@@ -2,6 +2,8 @@ import { Cultivo } from "../ClasesJs/Cultivo.js";
 import { Parcela } from "../ClasesJs/Parcela.js";
 import { Granjero } from "../ClasesJs/Granjero.js";
 
+document.querySelector("#botonRecargar").addEventListener("click", recargarRecursos);
+
 const CATALOGO = {
     "Tomate": { tiempo: 10, valor: 20 },
     "Calabaza": { tiempo: 20, valor: 40 }
