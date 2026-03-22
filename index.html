@@ -8,21 +8,34 @@
 <body>
     <header>
         <h1>Mi Granja</h1>
-        <p>Dinero: <span id="dinero">100</span></p>
+        <div class="stats-container">
+            <p>Dinero: <span id="dinero">100</span></p>
+            <p>Energía: <span id="energia">100</span></p>
+        </div>
 
-        
-        
-        
         <div id="mensaje-sistema"></div>
 
-        <label for="selectorSemillas">Semilla a plantar:</label>
-        <select id="selectorSemillas">
-            <option value="Tomate">Tomate </option>
-            <option value="Calabaza">Calabaza </option>
-        </select>
+        <div class="selector-container">
+            <label for="selectorSemillas">Semilla a plantar:</label>
+            <select id="selectorSemillas">
+                <option value="Tomate">Tomate </option>
+                <option value="Calabaza">Calabaza </option>
+            </select>
+        </div>
     </header>
 
-    <main id="terreno" class="grid-terreno"></main>
+    <div class="contenedor-juego">
+        <main id="terreno" class="grid-terreno"></main>
+        
+        <aside class="panel-lateral">
+            <h3>Herramientas</h3>
+            <div class="inventario-herramientas">
+                <div class="herramienta" title="Azada">⛏️</div>
+                <div class="herramienta" title="Regadera">💧</div>
+                <div class="herramienta" title="Hoz">🧹</div>
+            </div>
+        </aside>
+    </div>
     
     <button id="botonRecargar">Recargar Semillas (Debug)</button>
     <script type="module" src="Controladores/controladorPrincipal.js"></script>

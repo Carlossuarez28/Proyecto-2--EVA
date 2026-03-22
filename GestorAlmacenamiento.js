@@ -12,7 +12,7 @@ export const loadParcela = function () {
   return array.map(p => {
     const parcela = Object.assign(new Parcela(), p);
 
-    // 🔥 reconstruir cultivoActual
+    //reconstruir cultivoActual
     if (p.cultivoActual) {
       parcela.cultivoActual = Object.assign(
         new Cultivo(
