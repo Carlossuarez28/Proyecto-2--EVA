@@ -60,18 +60,18 @@ body {
     margin: 0;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centra el header y el terreno */
+    align-items: center;
     padding: 20px;
     min-height: 100vh;
     background-image: url('../Imagenes/depositphotos_102476918-stock-illustration-rural-landscape-with-green-fields.png');
-    background-size: cover;           /* Cubre toda la pantalla */
-    background-position: center;      /* Centra la imagen */
-    background-repeat: no-repeat;     /* No permite que la imagen se duplique */
-    background-attachment: fixed;     /* El fondo se queda quieto al hacer scroll */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 header {
-    background: rgba(255, 255, 255, 0.9); /* Un poco de transparencia para integrar el fondo */
+    background: rgba(255, 255, 255, 0.9);
     padding: 20px 40px;
     border-radius: 20px;
     box-shadow: 0 8px 16px rgba(0,0,0,0.1);
@@ -119,8 +119,7 @@ h1 {
     right: 30px; 
     top: 50%;
     transform: translateY(-50%);
-    
-    background: rgba(255, 255, 255, 0.95); /* Fondo casi blanco para resaltar herramientas */
+    background: rgba(255, 255, 255, 0.95); 
     padding: 20px;
     border-radius: 20px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
@@ -138,7 +137,7 @@ h1 {
 
 .inventario-herramientas {
     display: flex;
-    flex-direction: column; /* Herramientas una debajo de otra */
+    flex-direction: column;
     gap: 15px;
 }
 

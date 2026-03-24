@@ -8,6 +8,7 @@ import { loadParcela } from "../GestorAlmacenamiento.js";
 import { saveGranjero } from "../GestorAlmacenamiento.js";
 import { loadGranjero } from "../GestorAlmacenamiento.js";
 
+// Evento para el botón de recargar las semillas
 document.querySelector("#botonRecargar").addEventListener("click", recargarRecursos);
 
 
@@ -22,25 +23,30 @@ const ICONOS = {
 };
 
 
-
+//Intenta cargar al granjero. Si no existe, crea uno nuevo con new Granjero().
 let granjero = loadGranjero();
 if(granjero === null){
     granjero = new granjero
 }
 
+//Si no hay parcelas guardadas, crea un array de 9 parcelas nuevas usando Array.from.
 let parcelas = loadParcela();
 if(parcelas === null || parcelas.length == 0){
     parcelas = Array.from({ length: 9 }, (_, i) => new Parcela(i));
 }
+//Ejecuta renderizar() y luego cada 1 segundo (setInterval) para que el tiempo restante y las barras de progreso se actualicen solas.
 renderizar(); setInterval(() => renderizar(), 1000);
 
 function renderizar() {
     const contenedor = document.getElementById("terreno");
-    contenedor.innerHTML = "";
+    contenedor.innerHTML = ""; //vaciar completamente todo el contenido que haya dentro de ese contenedor.
+
+    //Actualizamos el texto del selector de semillas para mostrar el stock actual
     const selector = document.getElementById("selectorSemillas");
     selector.options[0].text = `Tomate (Stock: ${granjero.semillas["Tomate"]})`;
     selector.options[1].text = `Calabaza (Stock: ${granjero.semillas["Calabaza"]})`;
 
+    //Se crea cada una de las 9 parcelas
     parcelas.forEach(p => {
         const div = document.createElement("div");
         div.className = "parcela";
@@ -54,7 +60,7 @@ function renderizar() {
         div.onclick = () => gestionarClick(p);
         contenedor.appendChild(div);
     });
-    document.getElementById("dinero").innerText = granjero.dinero;
+    document.getElementById("dinero").innerText = granjero.dinero; // Actualizamos el marcador de dinero
 }
 
 function gestionarClick(parcela) {
@@ -71,9 +77,10 @@ function gestionarClick(parcela) {
             setTimeout(() => aviso.innerText = "", 2000);
         }
     } else if (parcela.estaListo()) {
-        granjero.dinero += CATALOGO[parcela.cultivoActual.nombre].valor;
+        granjero.dinero += CATALOGO[parcela.cultivoActual.nombre].valor; //Sumamos el valor de cada parcela recolectada al dinero del granjero
         parcela.cultivoActual = null;
     }
+    // Actualizamos visualmente y guardamos los cambios en el localStorage
     renderizar();
     saveParcela(parcelas);
     saveGranjero(granjero);
@@ -81,6 +88,7 @@ function gestionarClick(parcela) {
 
 function recargarRecursos() {
     granjero.semillas["Tomate"] += 10;
-    granjero.semillas["Calabaza"] += 10; renderizar();
+    granjero.semillas["Calabaza"] += 10; 
+    renderizar(); //Actualizamos para ver el nuevo stock
 }
 
