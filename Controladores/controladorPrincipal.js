@@ -14,19 +14,20 @@ document.querySelector("#botonRecargar").addEventListener("click", recargarRecur
 
 const CATALOGO = {
     "Tomate": { tiempo: 10, valor: 20 },
-    "Calabaza": { tiempo: 20, valor: 40 }
+    "Calabaza": { tiempo: 20, valor: 40 },
+    "Berenjena": { tiempo: 30, valor: 60 }
 };
 const ICONOS = {
     "Tomate": "🍅",
     "Calabaza": "🎃",
+    "Berenjena": "🍆",
     "brote": "🌱"
 };
-
 
 //Intenta cargar al granjero. Si no existe, crea uno nuevo con new Granjero().
 let granjero = loadGranjero();
 if(granjero === null){
-    granjero = new granjero
+    granjero = new Granjero()
 }
 
 //Si no hay parcelas guardadas, crea un array de 9 parcelas nuevas usando Array.from.
@@ -44,7 +45,8 @@ function renderizar() {
     //Actualizamos el texto del selector de semillas para mostrar el stock actual
     const selector = document.getElementById("selectorSemillas");
     selector.options[0].text = `Tomate (Stock: ${granjero.semillas["Tomate"]})`;
-    selector.options[1].text = `Calabaza (Stock: ${granjero.semillas["Calabaza"]})`;
+    selector.options[1].text = `Calabaza (Stock: ${granjero.semillas["Calabaza"]})`
+    selector.options[2].text = `Berenjena (Stock: ${granjero.semillas["Berenjena"]})`;
 
     //Se crea cada una de las 9 parcelas
     parcelas.forEach(p => {
@@ -66,20 +68,28 @@ function renderizar() {
 function gestionarClick(parcela) {
     const tipo = document.getElementById("selectorSemillas").value;
     const aviso = document.getElementById("mensaje-sistema");
+    const PROBABILIDAD_FALLO = 0.5; 
 
-    if (!parcela.cultivoActual) {
-        if (granjero.semillas[tipo] > 0) {
-            granjero.semillas[tipo]--;
+if (!parcela.cultivoActual) {
+    if (granjero.semillas[tipo] > 0) {
+        granjero.semillas[tipo]--; 
+
+        if (Math.random() > PROBABILIDAD_FALLO) {
             parcela.plantar(new Cultivo(tipo, CATALOGO[tipo].tiempo));
             aviso.innerText = "";
         } else {
-            aviso.innerText = `¡No tienes semillas de ${tipo}!`;
-            setTimeout(() => aviso.innerText = "", 2000);
+            aviso.innerText = "Error";
         }
-    } else if (parcela.estaListo()) {
-        granjero.dinero += CATALOGO[parcela.cultivoActual.nombre].valor; //Sumamos el valor de cada parcela recolectada al dinero del granjero
-        parcela.cultivoActual = null;
+        
+        setTimeout(() => aviso.innerText = "", 2000);
+    } else {
+        aviso.innerText = `¡No tienes semillas de ${tipo}!`;
+        setTimeout(() => aviso.innerText = "", 2000);
     }
+} else if (parcela.estaListo()) {
+    granjero.dinero += CATALOGO[parcela.cultivoActual.nombre].valor;
+    parcela.cultivoActual = null;
+}
     // Actualizamos visualmente y guardamos los cambios en el localStorage
     renderizar();
     saveParcela(parcelas);
@@ -89,6 +99,7 @@ function gestionarClick(parcela) {
 function recargarRecursos() {
     granjero.semillas["Tomate"] += 10;
     granjero.semillas["Calabaza"] += 10; 
+    granjero.semillas["Berenjena"] += 10;
     renderizar(); //Actualizamos para ver el nuevo stock
 }
 
