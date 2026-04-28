@@ -1,0 +1,257 @@
+/* ============================================================
+   tienda.css — Estilos de la pantalla de tienda
+   ============================================================ */
+
+body {
+    align-items: stretch;
+    padding: 0;
+}
+
+/* ── Header tienda ───────────────────────────────────────────── */
+.header-tienda {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(255,255,255,0.95);
+    padding: 14px 28px;
+    border-bottom: 4px solid #e8a000;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    gap: 16px;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+}
+
+.header-tienda h1 {
+    margin: 0;
+    font-size: 1.6rem;
+    color: #c47f00;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    flex: 1;
+    text-align: center;
+}
+
+.stats-tienda {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #c47f00;
+    background: #fff8e1;
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 2px solid #e8a000;
+    white-space: nowrap;
+}
+
+.btn-volver-juego {
+    background: none;
+    border: 2px solid #81c784;
+    color: #388e3c;
+    font-weight: bold;
+    font-size: 0.85rem;
+    padding: 8px 14px;
+    border-radius: 10px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.15s, color 0.15s;
+}
+.btn-volver-juego:hover { background: #388e3c; color: white; }
+
+/* ── Layout dos columnas ────────────────────────────────────── */
+.contenedor-tienda {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    padding: 24px 32px;
+    max-width: 1000px;
+    margin: 0 auto;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.columna-tienda {
+    background: rgba(255,255,255,0.93);
+    border-radius: 16px;
+    padding: 20px 22px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+}
+
+.columna-tienda h2 {
+    margin: 0 0 16px;
+    font-size: 1.15rem;
+    color: #388e3c;
+    border-bottom: 2px dashed #c8e6c9;
+    padding-bottom: 8px;
+}
+
+/* ── Categorías ─────────────────────────────────────────────── */
+.categoria { margin-bottom: 20px; }
+
+.categoria h3 {
+    font-size: 0.85rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0 0 10px;
+}
+
+/* ── Tarjetas de producto ───────────────────────────────────── */
+.lista-items { display: flex; flex-direction: column; gap: 10px; }
+
+.item-tienda {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #f9f6ee;
+    border: 2px solid #e8dcc8;
+    border-radius: 12px;
+    padding: 12px 14px;
+    transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.item-tienda:hover { border-color: #81c784; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+
+.item-tienda-icono { font-size: 2rem; flex-shrink: 0; }
+
+.item-tienda-info { flex: 1; }
+
+.item-tienda-nombre {
+    font-weight: bold;
+    font-size: 0.95rem;
+    color: #2C1A0E;
+}
+
+.item-tienda-desc {
+    font-size: 0.78rem;
+    color: #888;
+    margin-top: 2px;
+}
+
+.item-tienda-precio {
+    font-weight: bold;
+    font-size: 0.9rem;
+    color: #c47f00;
+    white-space: nowrap;
+}
+
+/* Botón de acción dentro de cada ítem */
+.btn-accion {
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: none;
+    font-family: inherit;
+    font-weight: bold;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: filter 0.15s, transform 0.1s;
+    white-space: nowrap;
+    flex-shrink: 0;
+    color: white;
+}
+.btn-accion:active { transform: scale(0.96); }
+.btn-accion:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.btn-comprar { background: #4A7C3F; }
+.btn-comprar:hover:not(:disabled) { filter: brightness(1.15); }
+
+.btn-vender { background: #e8a000; }
+.btn-vender:hover:not(:disabled) { filter: brightness(1.1); }
+
+/* Stock disponible en venta */
+.item-stock {
+    font-size: 0.78rem;
+    font-weight: bold;
+    color: #555;
+    background: #eee;
+    padding: 2px 8px;
+    border-radius: 10px;
+    white-space: nowrap;
+}
+
+/* Ítem sin stock */
+.item-tienda.sin-stock { opacity: 0.5; }
+
+/* ── Hint y resumen ─────────────────────────────────────────── */
+.hint-venta {
+    font-size: 0.82rem;
+    color: #888;
+    margin: -8px 0 14px;
+    font-style: italic;
+}
+
+.resumen-venta {
+    margin-top: 16px;
+    background: #f0f9ee;
+    border-left: 4px solid #4A7C3F;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 0.85rem;
+    color: #2C1A0E;
+    line-height: 1.6;
+    display: none;
+}
+.resumen-venta.visible { display: block; }
+
+/* ── Mejora máxima ──────────────────────────────────────────── */
+.mejora-max {
+    font-size: 0.78rem;
+    font-weight: bold;
+    color: #4A7C3F;
+    background: #d4edda;
+    padding: 3px 10px;
+    border-radius: 10px;
+}
+
+/* ── Responsive básico ──────────────────────────────────────── */
+@media (max-width: 640px) {
+    .contenedor-tienda { grid-template-columns: 1fr; padding: 16px; }
+}
+
+/* Badge bonus azada en precio de venta */
+.badge-azada {
+    display: inline-block;
+    background: #fff3cd;
+    color: #6d4c00;
+    border: 1px solid #e8a000;
+    border-radius: 10px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    padding: 1px 7px;
+    margin-left: 4px;
+    vertical-align: middle;
+}
+/* ── Filtro de semillas (XPath) ─────────────────────────────── */
+.filtro-semillas {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    background: #f0ece0;
+    border-radius: 10px;
+    padding: 8px 12px;
+    border: 1px solid #e0d5c0;
+}
+
+.filtro-semillas label {
+    font-size: 0.85rem;
+    font-weight: bold;
+    color: #8B5E3C;
+    white-space: nowrap;
+}
+
+.filtro-semillas select {
+    flex: 1;
+    padding: 6px 10px;
+    border-radius: 8px;
+    border: 2px solid #c8b89a;
+    background: #fffdf5;
+    font-family: inherit;
+    font-size: 0.85rem;
+    color: #2C1A0E;
+    cursor: pointer;
+}
+
+.filtro-semillas select:focus {
+    outline: none;
+    border-color: #4A7C3F;
+}

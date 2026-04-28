@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Granja - Nueva Partida</title>
+    <link rel="stylesheet" href="Estilos/menu.css">
+    <link rel="stylesheet" href="Estilos/configuracion.css">
+</head>
+<body>
+
+    <div class="tarjeta tarjeta-config">
+
+        <button class="btn-volver" id="btnVolver">&#8592; Volver</button>
+
+        <h1>Nueva Partida</h1>
+        <p class="subtitulo">Configura tu granja</p>
+
+        <form id="formConfig" novalidate>
+
+            <div class="campo">
+                <label for="nombreGranjero">👤 Nombre del granjero</label>
+                <input type="text" id="nombreGranjero" placeholder="Ej: Juan" maxlength="20" autocomplete="off">
+                <span class="error" id="errNombre"></span>
+            </div>
+
+            <div class="campo">
+                <label for="nombreGranja">🏡 Nombre de la granja</label>
+                <input type="text" id="nombreGranja" placeholder="Ej: El Rincón Verde" maxlength="30" autocomplete="off">
+                <span class="error" id="errGranja"></span>
+            </div>
+
+            <div class="campo">
+                <label>⚔️ Dificultad</label>
+                <div class="opciones-dificultad">
+                    <label class="opcion-dif">
+                        <input type="radio" name="dificultad" value="facil">
+                        <span class="etiqueta-dif facil">Fácil</span>
+                    </label>
+                    <label class="opcion-dif">
+                        <input type="radio" name="dificultad" value="normal" checked>
+                        <span class="etiqueta-dif normal">Normal</span>
+                    </label>
+                    <label class="opcion-dif">
+                        <input type="radio" name="dificultad" value="dificil">
+                        <span class="etiqueta-dif dificil">Difícil</span>
+                    </label>
+                </div>
+                <p class="hint-dificultad" id="hintDificultad"></p>
+            </div>
+
+            <div class="campo">
+                <label for="dineroInicial">💰 Dinero inicial: <strong id="lblDinero">100</strong> monedas</label>
+                <input type="range" id="dineroInicial" min="50" max="300" step="25" value="100">
+                <div class="rango-labels">
+                    <span id="lblDineroMin">50</span>
+                    <span id="lblDineroMax">300</span>
+                </div>
+                <span class="error" id="errDinero"></span>
+            </div>
+
+            <div class="campo">
+                <label for="energiaInicial">⚡ Energía inicial: <strong id="lblEnergia">100</strong></label>
+                <input type="range" id="energiaInicial" min="50" max="150" step="10" value="100">
+                <div class="rango-labels">
+                    <span id="lblEnergiaMin">50</span>
+                    <span id="lblEnergiaMax">150</span>
+                </div>
+                <span class="error" id="errEnergia"></span>
+            </div>
+
+            <div class="campo">
+                <label>Tamaño del terreno</label>
+                <div class="opciones-terreno">
+                    <label class="opcion-terreno">
+                        <input type="radio" name="terreno" value="4">
+                        <span class="etiqueta-terreno">Pequeño<br><small>2×2 · 4 parcelas</small></span>
+                    </label>
+                    <label class="opcion-terreno">
+                        <input type="radio" name="terreno" value="9" checked>
+                        <span class="etiqueta-terreno">Mediano<br><small>3×3 · 9 parcelas</small></span>
+                    </label>
+                    <label class="opcion-terreno">
+                        <input type="radio" name="terreno" value="16">
+                        <span class="etiqueta-terreno">Grande<br><small>4×4 · 16 parcelas</small></span>
+                    </label>
+                </div>
+                <span class="error" id="errTerreno"></span>
+            </div>
+
+            <div class="campo">
+                <label for="cultivoFavorito">🌱 Cultivo favorito <small>(empiezas con 5 semillas de este cultivo)</small></label>
+                <select id="cultivoFavorito">
+                    <option value="Tomate">🍅 Tomate — rápido, poco valor</option>
+                    <option value="Calabaza">🎃 Calabaza — equilibrado</option>
+                    <option value="Berenjena">🍆 Berenjena — lento, muy rentable</option>
+                </select>
+            </div>
+
+            <div class="resumen" id="resumen"></div>
+
+            <button type="submit" class="btn btn-nueva btn-iniciar">
+                ¡Comenzar aventura!
+            </button>
+
+        </form>
+    </div>
+
+    <script src="Controladores/controladorConfiguracion.js"></script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <!-- ═══════════════════════════════════
+         Elemento raíz
+         ═══════════════════════════════════ -->
+    <xs:element name="juego">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="semillas"    type="tipoSemillas"/>
+                <xs:element name="herramientas" type="tipoHerramientas"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- ═══════════════════════════════════
+         SEMILLAS
+         ═══════════════════════════════════ -->
+    <xs:complexType name="tipoSemillas">
+        <xs:sequence>
+            <xs:element name="semilla" type="tipoSemilla" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="tipoSemilla">
+        <xs:sequence>
+            <xs:element name="nombre"          type="xs:string"/>
+            <xs:element name="icono"           type="xs:string"/>
+            <xs:element name="tiempoMaduracion" type="tipoPositivo"/>
+            <xs:element name="precioCompra"    type="tipoPositivo"/>
+            <xs:element name="cantidadPaquete" type="tipoPositivo"/>
+            <xs:element name="precioVentaBase" type="tipoPositivo"/>
+            <xs:element name="descripcion"     type="xs:string"/>
+        </xs:sequence>
+        <xs:attribute name="id" type="xs:string" use="required"/>
+    </xs:complexType>
+
+    <!-- ═══════════════════════════════════
+         HERRAMIENTAS
+         ═══════════════════════════════════ -->
+    <xs:complexType name="tipoHerramientas">
+        <xs:sequence>
+            <xs:element name="herramienta" type="tipoHerramienta" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="tipoHerramienta">
+        <xs:sequence>
+            <xs:element name="nombre"           type="xs:string"/>
+            <xs:element name="icono"            type="xs:string"/>
+            <xs:element name="descripcionBase"  type="xs:string"/>
+            <xs:element name="niveles"          type="tipoNiveles"/>
+        </xs:sequence>
+        <xs:attribute name="id" type="xs:string" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="tipoNiveles">
+        <xs:sequence>
+            <xs:element name="nivel" type="tipoNivel" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="tipoNivel">
+        <xs:sequence>
+            <xs:element name="efecto"               type="xs:string"/>
+            <!-- Cada tipo de herramienta usa un campo distinto, todos opcionales -->
+            <xs:element name="multiplicadorPrecio"  type="xs:decimal"  minOccurs="0"/>
+            <xs:element name="multiplicadorTiempo"  type="xs:decimal"  minOccurs="0"/>
+            <xs:element name="unidadesCosecha"      type="tipoPositivo" minOccurs="0"/>
+            <xs:element name="costeMejora"          type="xs:nonNegativeInteger"/>
+        </xs:sequence>
+        <xs:attribute name="numero" type="tipoPositivo" use="required"/>
+    </xs:complexType>
+
+    <!-- ═══════════════════════════════════
+         Tipos simples reutilizables
+         ═══════════════════════════════════ -->
+    <xs:simpleType name="tipoPositivo">
+        <xs:restriction base="xs:integer">
+            <xs:minInclusive value="1"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+</xs:schema>

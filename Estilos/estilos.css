@@ -1,67 +1,15 @@
-/*ESTILOS BASE*/
-.grid-terreno { 
-    display: grid; 
-    grid-template-columns: repeat(3, 120px); 
-    gap: 15px; 
-    background: #a1887f; 
-    padding: 20px; 
-    border-radius: 15px; 
-    border: 8px solid #795548; 
-    box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
-}
-
-.parcela { 
-    width: 120px; 
-    height: 120px; 
-    background-color: #8d6e63; 
-    border-radius: 10px; 
-    cursor: pointer;
-    display: flex; 
-    flex-direction: column; 
-    align-items: center; 
-    justify-content: center;
-    font-size: 2rem; 
-    transition: transform 0.2s, background-color 0.3s;
-    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
-}
-
-.parcela:hover {
-    transform: scale(1.05);
-    background-color: #a1887f;
-}
-
-#mensaje-sistema {
-    height: 25px; 
-    color: #E74C3C; 
-    font-weight: bold; 
-    text-align: center; 
-    margin: 10px 0;
-}
-
-/* Tipos y Fases de Cultivo */
-.parcela.Tomate { background-color: #E74C3C; }
-.parcela.Calabaza { background-color: #F39C12; }
-.parcela.semilla { opacity: 0.4; }
-.parcela.brote { opacity: 0.7; }
-.parcela.creciendo { opacity: 1; }
-.parcela.madura { background-color: #2ECC71 !important; border: 4px solid #F1C40F; }
-
-.tiempo { font-size: 11px; color: white; background: rgba(0,0,0,0.5); padding: 2px 4px; border-radius: 4px; margin-top: 4px; }
-.barra { width: 80%; height: 6px; background: #5D2E0A; margin-top: 5px; border-radius: 3px; overflow: hidden; }
-.progreso { height: 100%; background: #2ECC71; width: 0%; }
-
 /*DISEÑO DE PANTALLA*/
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap');
 
 body {
     font-family: 'Quicksand', sans-serif;
-    background-color: #e8f5e9; 
+    background-color: #e8f5e9;
     color: #2e7d32;
     margin: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
+    padding: 16px;
     min-height: 100vh;
     background-image: url('../Imagenes/depositphotos_102476918-stock-illustration-rural-landscape-with-green-fields.png');
     background-size: cover;
@@ -70,101 +18,121 @@ body {
     background-attachment: fixed;
 }
 
+/*Header*/
 header {
-    background: rgba(255, 255, 255, 0.9);
-    padding: 20px 40px;
-    border-radius: 20px;
-    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    background: rgba(255, 255, 255, 0.93);
+    padding: 14px 24px;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
     text-align: center;
-    margin-bottom: 30px;
-    border-bottom: 5px solid #81c784;
+    margin-bottom: 16px;
+    border-bottom: 4px solid #81c784;
+    width: min(860px, 96vw);
+    box-sizing: border-box;
 }
 
-h1 {
+.header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    gap: 10px;
+}
+
+.info-granjero {
+    font-size: 0.82rem;
+    color: #555;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+}
+
+.info-granjero .separador { color: #ccc; }
+
+.badge-dificultad {
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-size: 0.72rem;
+    font-weight: bold;
+    background: #fff3cd;
+    color: #6d4c00;
+    border: 1px solid #e6c300;
+}
+
+.badge-dificultad.facil   { background:#d4edda; color:#2E5426; border-color:#4A7C3F; }
+.badge-dificultad.dificil { background:#f8d7da; color:#7b1a1a; border-color:#C0392B; }
+
+#tituloJuego {
     margin: 0;
-    font-size: 2.5rem;
+    font-size: 1.6rem;
     color: #388e3c;
     text-transform: uppercase;
     letter-spacing: 2px;
+    flex: 1;
+    text-align: center;
 }
 
-/*Estadísticas Dinero y Energía*/
+.header-acciones {
+    display: flex;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+/*Stats dinero / energía*/
 .stats-container {
     display: flex;
     justify-content: center;
-    gap: 30px;
-    margin-top: 10px;
+    align-items: center;
+    gap: 20px;
+    margin: 4px 0;
+    flex-wrap: wrap;
 }
 
 .stats-container p {
     font-weight: bold;
-    font-size: 1.2rem;
+    font-size: 1.05rem;
     margin: 0;
 }
 
-#dinero { color: #fbc02d; }
+#dinero  { color: #e6a800; }
 #energia { color: #03a9f4; }
+#energiaMax { color: #03a9f4; }
 
-/*Contenedor para Terreno + Herramientas a la derecha*/
-.contenedor-juego {
-    display: flex;
-    justify-content: center;
+.barra-energia-wrap {
+    width: 120px;
+    height: 10px;
+    background: #cce8f4;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.barra-energia {
+    height: 100%;
+    background: #03a9f4;
+    border-radius: 5px;
+    transition: width 0.4s;
     width: 100%;
-    margin-top: 10px;
 }
 
-.panel-lateral {
-    /* Posicionamiento independiente a la derecha de la pantalla */
-    position: fixed;
-    right: 30px; 
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(255, 255, 255, 0.95); 
-    padding: 20px;
-    border-radius: 20px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    border-left: 6px solid #81c784;
-    text-align: center;
-    z-index: 10;
-}
-
-.panel-lateral h3 {
-    margin: 0 0 15px 0;
+/*Selector semillas*/
+.selector-container {
+    margin-top: 6px;
     font-size: 0.9rem;
-    color: #888;
-    text-transform: uppercase;
 }
 
-.inventario-herramientas {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+#mensaje-sistema {
+    height: 22px;
+    color: #E74C3C;
+    font-weight: bold;
+    text-align: center;
+    margin: 4px 0;
+    font-size: 0.88rem;
 }
 
-.herramienta {
-    width: 55px;
-    height: 55px;
-    background-color: #f9f9f9;
-    border: 3px solid #cbd5e0;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.8rem;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    user-select: none;
-}
-
-.herramienta:hover {
-    background-color: #ffffff;
-    border-color: #81c784;
-    transform: scale(1.1);
-}
-
-/* Controles y botones */
+/*Botones globales*/
 select, button {
-    padding: 10px 15px;
+    padding: 8px 14px;
     border-radius: 10px;
     border: 2px solid #388e3c;
     background: white;
@@ -172,16 +140,210 @@ select, button {
     font-weight: bold;
     color: #388e3c;
     cursor: pointer;
-    margin-top: 10px;
+    font-size: 0.88rem;
+    transition: background 0.15s, color 0.15s;
 }
 
-button:hover {
-    background: #388e3c;
+button:hover { background: #388e3c; color: white; }
+
+#botonTienda {
+    background: #e8a000;
+    border-color: #c47f00;
     color: white;
 }
+#botonTienda:hover { background: #c47f00; }
 
-#botonRecargar {
-    margin-top: 30px;
-    opacity: 0.6;
-    font-size: 0.8rem;
+#botonMenu {
+    border-color: #999;
+    color: #666;
+}
+#botonMenu:hover { background: #999; color: white; }
+
+/*Layout juego*/
+.contenedor-juego {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 16px;
+    width: 100%;
+    max-width: 1100px;
+}
+
+/*Paneles laterales*/
+.panel-lateral {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 16px;
+    border-radius: 16px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    text-align: center;
+    min-width: 140px;
+    max-width: 160px;
+}
+
+.panel-lateral h3 {
+    margin: 0 0 10px;
+    font-size: 0.82rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.panel-izquierdo { border-left: 5px solid #81c784; }
+.panel-derecho   { border-right: 5px solid #81c784; }
+
+/* Secciones dentro del panel */
+.seccion-panel { margin-bottom: 14px; }
+
+.panel-subtitulo {
+    font-size: 0.72rem;
+    font-weight: bold;
+    color: #aaa;
+    text-transform: uppercase;
+    margin: 0 0 6px;
+    letter-spacing: 1px;
+}
+
+/* Items de inventario */
+.inventario-semillas { display: flex; flex-direction: column; gap: 5px; }
+
+.item-inventario {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.82rem;
+    background: #f9f9f9;
+    border-radius: 8px;
+    padding: 4px 8px;
+}
+
+.item-icono  { font-size: 1rem; }
+.item-nombre { flex: 1; text-align: left; color: #555; }
+
+.item-cantidad {
+    font-weight: bold;
+    color: #388e3c;
+    min-width: 20px;
+    text-align: right;
+}
+
+/* Herramientas */
+.inventario-herramientas { display: flex; flex-direction: column; gap: 10px; }
+
+.herramienta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #f9f9f9;
+    border: 2px solid #cbd5e0;
+    border-radius: 10px;
+    padding: 8px 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+    user-select: none;
+    gap: 2px;
+}
+
+.herramienta:hover { border-color: #81c784; background: #fff; transform: scale(1.05); }
+
+.herr-icono  { font-size: 1.5rem; }
+.herr-nombre { font-size: 0.7rem; color: #888; }
+.herr-nivel  { font-size: 0.7rem; font-weight: bold; color: #388e3c; background: #d4edda; padding: 1px 6px; border-radius: 10px; }
+
+.btn-recargar {
+    margin-top: 12px;
+    width: 100%;
+    font-size: 0.75rem;
+    opacity: 0.65;
+    padding: 6px;
+}
+
+/*Terreno*/
+.grid-terreno {
+    display: grid;
+    grid-template-columns: repeat(3, 120px);
+    gap: 12px;
+    background: #a1887f;
+    padding: 16px;
+    border-radius: 14px;
+    border: 6px solid #795548;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
+}
+
+.parcela {
+    width: 120px;
+    height: 120px;
+    background-color: #8d6e63;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    transition: transform 0.2s, background-color 0.3s;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+}
+
+.parcela:hover  { transform: scale(1.05); background-color: #a1887f; }
+
+/*Fases y tipos*/
+.parcela.Tomate   { background-color: #E74C3C; }
+.parcela.Calabaza { background-color: #F39C12; }
+.parcela.semilla  { opacity: 0.4; }
+.parcela.brote    { opacity: 0.7; }
+.parcela.creciendo{ opacity: 1; }
+.parcela.madura   { background-color: #2ECC71 !important; border: 4px solid #F1C40F; }
+
+.tiempo   { font-size: 11px; color: white; background: rgba(0,0,0,0.5); padding: 2px 4px; border-radius: 4px; margin-top: 4px; }
+.barra    { width: 80%; height: 6px; background: #5D2E0A; margin-top: 5px; border-radius: 3px; overflow: hidden; }
+.progreso { height: 100%; background: #2ECC71; width: 0%; }
+
+/*Modal compartido*/
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.65);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 200;
+}
+.overlay.activo { display: flex; }
+
+.modal {
+    background: #FDF6E3;
+    padding: 28px 32px;
+    border-radius: 14px;
+    border: 4px solid #8B5E3C;
+    text-align: center;
+    max-width: 320px;
+    width: 90%;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+}
+
+.modal p { color: #2C1A0E; font-weight: bold; margin-bottom: 20px; line-height: 1.5; }
+.modal p strong { color: #C0392B; }
+
+.modal-botones { display: flex; gap: 10px; justify-content: center; }
+
+.btn-cancelar-modal, .btn-confirmar-modal {
+    padding: 10px 22px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    font-family: inherit;
+    font-size: 0.9rem;
+}
+.btn-cancelar-modal  { background: #ccc; color: #333; }
+.btn-confirmar-modal { background: #C0392B; color: white; }
+.btn-confirmar-modal:hover { background: #a93226; }
+
+.parcela.en-crecimiento:hover {
+    background-color: #c0392b !important;
+    border: 3px solid #e74c3c;
+    transform: scale(1.05);
+}
+.parcela.en-crecimiento {
+    cursor: not-allowed;
 }

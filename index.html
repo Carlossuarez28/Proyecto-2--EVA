@@ -6,39 +6,120 @@
     <link rel="stylesheet" href="Estilos/estilos.css">
 </head>
 <body>
+
+    <!-- CABECERA: info del granjero + stats -->
     <header>
-        <h1>Mi Granja</h1>
+        <div class="header-top">
+            <div class="info-granjero">
+                <span id="nombreGranjero">Granjero</span>
+                <span class="separador">·</span>
+                <span id="nombreGranja">Mi Granja</span>
+                <span class="badge-dificultad" id="badgeDificultad">Normal</span>
+            </div>
+            <h1 id="tituloJuego">Mi Granja</h1>
+            <div class="header-acciones">
+                <button id="botonTienda">🏪 Tienda</button>
+                <button id="botonMenu">← Menú</button>
+            </div>
+        </div>
+
         <div class="stats-container">
-            <p>Dinero: <span id="dinero">100</span></p>
-            <p>Energía: <span id="energia">100</span></p>
+            <p>💰 Dinero: <span id="dinero">100</span></p>
+            <p>⚡ Energía: <span id="energia">100</span> / <span id="energiaMax">100</span></p>
+            <div class="barra-energia-wrap">
+                <div class="barra-energia" id="barraEnergia"></div>
+            </div>
         </div>
 
         <div id="mensaje-sistema"></div>
 
         <div class="selector-container">
-            <label for="selectorSemillas">Semilla a plantar:</label>
+            <label for="selectorSemillas">🌱 Semilla a plantar:</label>
             <select id="selectorSemillas">
-                <option value="Tomate">Tomate </option>
-                <option value="Calabaza">Calabaza </option>
-                <option value="Berenjena">Berenjena </option>
+                <option value="Tomate">Tomate</option>
+                <option value="Calabaza">Calabaza</option>
+                <option value="Berenjena">Berenjena</option>
             </select>
         </div>
     </header>
 
+    <!-- JUEGO: terreno + paneles laterales -->
     <div class="contenedor-juego">
-        <main id="terreno" class="grid-terreno"></main>
-        
-        <aside class="panel-lateral">
-            <h3>Herramientas</h3>
-            <div class="inventario-herramientas">
-                <div class="herramienta" title="Azada">⛏️</div>
-                <div class="herramienta" title="Regadera">💧</div>
-                <div class="herramienta" title="Hoz">🧹</div>
+
+        <!-- Panel izquierdo: Inventario -->
+        <aside class="panel-lateral panel-izquierdo">
+            <h3>📦 Inventario</h3>
+
+            <div class="seccion-panel">
+                <p class="panel-subtitulo">Semillas</p>
+                <div class="inventario-semillas">
+                    <div class="item-inventario">
+                        <span class="item-icono">🍅</span>
+                        <span class="item-nombre">Tomate</span>
+                        <span class="item-cantidad" id="invTomate">0</span>
+                    </div>
+                    <div class="item-inventario">
+                        <span class="item-icono">🎃</span>
+                        <span class="item-nombre">Calabaza</span>
+                        <span class="item-cantidad" id="invCalabaza">0</span>
+                    </div>
+                    <div class="item-inventario">
+                        <span class="item-icono">🍆</span>
+                        <span class="item-nombre">Berenjena</span>
+                        <span class="item-cantidad" id="invBerenjena">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="seccion-panel">
+                <p class="panel-subtitulo">Cosecha</p>
+                <div class="inventario-semillas">
+                    <div class="item-inventario">
+                        <span class="item-icono">🍅</span>
+                        <span class="item-nombre">Tomate</span>
+                        <span class="item-cantidad" id="coseTomate">0</span>
+                    </div>
+                    <div class="item-inventario">
+                        <span class="item-icono">🎃</span>
+                        <span class="item-nombre">Calabaza</span>
+                        <span class="item-cantidad" id="coseCalabaza">0</span>
+                    </div>
+                    <div class="item-inventario">
+                        <span class="item-icono">🍆</span>
+                        <span class="item-nombre">Berenjena</span>
+                        <span class="item-cantidad" id="coseBerenjena">0</span>
+                    </div>
+                </div>
             </div>
         </aside>
+
+        <!-- Terreno central -->
+        <main id="terreno" class="grid-terreno"></main>
+
+        <!-- Panel derecho: Herramientas -->
+        <aside class="panel-lateral panel-derecho">
+            <h3>🛠️ Herramientas</h3>
+            <div class="inventario-herramientas">
+                <div class="herramienta" id="herAzada" title="Azada — Preparar parcela">
+                    <span class="herr-icono">⛏️</span>
+                    <span class="herr-nombre">Azada</span>
+                    <span class="herr-nivel" id="nivelAzada">Nv.1</span>
+                </div>
+                <div class="herramienta" id="herRegadera" title="Regadera — Regar cultivos">
+                    <span class="herr-icono">💧</span>
+                    <span class="herr-nombre">Regadera</span>
+                    <span class="herr-nivel" id="nivelRegadera">Nv.1</span>
+                </div>
+                <div class="herramienta" id="herHoz" title="Hoz — Cosechar">
+                    <span class="herr-icono">🧹</span>
+                    <span class="herr-nombre">Hoz</span>
+                    <span class="herr-nivel" id="nivelHoz">Nv.1</span>
+                </div>
+            </div>
+            <button id="botonRecargar" class="btn-recargar">↺ Recargar</button>
+        </aside>
     </div>
-    
-    <button id="botonRecargar">Recargar Semillas</button>
+
     <script type="module" src="Controladores/controladorPrincipal.js"></script>
 </body>
 </html>

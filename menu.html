@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Granja - Menú</title>
+    <link rel="stylesheet" href="Estilos/menu.css">
+</head>
+<body>
+
+    <div class="hojas-container">
+        <div class="hoja"></div>
+        <div class="hoja"></div>
+        <div class="hoja"></div>
+        <div class="hoja"></div>
+        <div class="hoja"></div>
+        <div class="hoja"></div>
+        <div class="hoja"></div>
+        <div class="hoja"></div>
+        <div class="hoja"></div>
+        <div class="hoja"></div>
+    </div>
+
+    <div class="tarjeta">
+        <img src="Imagenes/descarga.png" alt="Logo Mi Granja" class="logo-menu">
+        
+        <h1>Mi Granja</h1>
+        <p class="subtitulo">El juego de cultivo</p>
+
+        <div id="infoPartida"></div>
+
+        <div class="botones">
+            <button class="btn btn-nueva" id="btnNueva">Nueva Partida</button>
+            <button class="btn btn-continuar" id="btnContinuar" disabled>Continuar Partida</button>
+            <button class="btn btn-eliminar" id="btnEliminar" disabled>Eliminar Partida</button>
+            <a class="btn btn-github" id="btnGithub" href="#" target="_blank">Ver en GitHub</a>
+        </div>
+    </div>
+
+    <div class="overlay" id="overlay">
+        <div class="modal">
+            <p id="modalMensaje">¿Estás seguro de que quieres borrar la partida?</p>
+            <div class="modal-botones">
+                <button class="btn-cancelar-modal" id="btnCancelarModal">Cancelar</button>
+                <button class="btn-confirmar-modal" id="btnConfirmarModal">Confirmar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="Controladores/controladorMenu.js"></script>
+</body>
+</html>

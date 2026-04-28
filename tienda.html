@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Granja - Tienda</title>
+    <link rel="stylesheet" href="Estilos/estilos.css">
+    <link rel="stylesheet" href="Estilos/tienda.css">
+</head>
+<body>
+
+    <header class="header-tienda">
+        <button class="btn-volver-juego" id="btnVolver">← Volver al juego</button>
+        <h1>🏪 Tienda</h1>
+        <div class="stats-tienda">
+            <span>💰 <strong id="dineroDispo">0</strong> monedas</span>
+        </div>
+    </header>
+
+    <div class="contenedor-tienda">
+
+        <!-- COLUMNA IZQUIERDA: Comprar -->
+        <section class="columna-tienda">
+            <h2>🛒 Comprar</h2>
+
+            <!-- Semillas -->
+            <div class="categoria">
+                <h3>🌱 Semillas</h3>
+                <div class="filtro-semillas">
+                    <label for="filtroSemillas">🔍 Filtrar por:</label>
+                    <select id="filtroSemillas">
+                        <option value="">Todas las semillas</option>
+                        <option value="precio_asc">Precio: menor a mayor</option>
+                        <option value="precio_desc">Precio: mayor a menor</option>
+                        <option value="tiempo_asc">Maduración: más rápida</option>
+                        <option value="tiempo_desc">Maduración: más lenta</option>
+                        <option value="rentabilidad">Más rentables primero</option>
+                    </select>
+                </div>
+                <div class="lista-items" id="listaSemillas">
+                    <!-- Generado por JS -->
+                </div>
+            </div>
+
+            <!-- Mejoras de herramientas -->
+            <div class="categoria">
+                <h3>🛠️ Mejoras de herramientas</h3>
+                <div class="lista-items" id="listaMejoras">
+                    <!-- Generado por JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- COLUMNA DERECHA: Vender -->
+        <section class="columna-tienda">
+            <h2>💵 Vender cosecha</h2>
+            <p class="hint-venta">Vende los cultivos que has recolectado en el campo.</p>
+
+            <div class="lista-items" id="listaVenta">
+                <!-- Generado por JS -->
+            </div>
+
+            <div class="resumen-venta" id="resumenVenta"></div>
+        </section>
+
+    </div>
+
+    <div class="overlay" id="overlayConfirm">
+        <div class="modal">
+            <p id="modalTexto"></p>
+            <div class="modal-botones">
+                <button class="btn-cancelar-modal" id="btnCancelar">Cancelar</button>
+                <button class="btn-confirmar-modal" id="btnConfirmar">Confirmar</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="Controladores/controladorTienda.js"></script>
+</body>
+</html>

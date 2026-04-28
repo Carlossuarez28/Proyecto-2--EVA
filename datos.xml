@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<juego xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="datos.xsd">
+
+    <!-- ═══════════════════════════════════════
+         SEMILLAS / CULTIVOS
+         ═══════════════════════════════════════ -->
+    <semillas>
+        <semilla id="Tomate">
+            <nombre>Tomate</nombre>
+            <icono>🍅</icono>
+            <tiempoMaduracion>10</tiempoMaduracion>   <!-- segundos -->
+            <precioCompra>8</precioCompra>             <!-- coste del paquete en tienda -->
+            <cantidadPaquete>5</cantidadPaquete>       <!-- unidades por paquete -->
+            <precioVentaBase>20</precioVentaBase>      <!-- monedas por unidad cosechada -->
+            <descripcion>Madura rápido, valor bajo</descripcion>
+        </semilla>
+        <semilla id="Calabaza">
+            <nombre>Calabaza</nombre>
+            <icono>🎃</icono>
+            <tiempoMaduracion>20</tiempoMaduracion>
+            <precioCompra>14</precioCompra>
+            <cantidadPaquete>5</cantidadPaquete>
+            <precioVentaBase>40</precioVentaBase>
+            <descripcion>Equilibrio entre tiempo y valor</descripcion>
+        </semilla>
+        <semilla id="Berenjena">
+            <nombre>Berenjena</nombre>
+            <icono>🍆</icono>
+            <tiempoMaduracion>30</tiempoMaduracion>
+            <precioCompra>20</precioCompra>
+            <cantidadPaquete>5</cantidadPaquete>
+            <precioVentaBase>60</precioVentaBase>
+            <descripcion>Tarda más, pero es muy rentable</descripcion>
+        </semilla>
+    </semillas>
+
+    <!-- ═══════════════════════════════════════
+         HERRAMIENTAS
+         ═══════════════════════════════════════ -->
+    <herramientas>
+
+        <herramienta id="azada">
+            <nombre>Azada</nombre>
+            <icono>⛏️</icono>
+            <descripcionBase>Influye en la calidad del cultivo y el precio de venta</descripcionBase>
+            <niveles>
+                <nivel numero="1">
+                    <efecto>Precio de venta normal (×1.0)</efecto>
+                    <multiplicadorPrecio>1.0</multiplicadorPrecio>
+                    <costeMejora>0</costeMejora>
+                </nivel>
+                <nivel numero="2">
+                    <efecto>Calidad mejorada: precio de venta +25%</efecto>
+                    <multiplicadorPrecio>1.25</multiplicadorPrecio>
+                    <costeMejora>80</costeMejora>
+                </nivel>
+                <nivel numero="3">
+                    <efecto>Calidad óptima: precio de venta +50%</efecto>
+                    <multiplicadorPrecio>1.5</multiplicadorPrecio>
+                    <costeMejora>200</costeMejora>
+                </nivel>
+            </niveles>
+        </herramienta>
+
+        <herramienta id="regadera">
+            <nombre>Regadera</nombre>
+            <icono>💧</icono>
+            <descripcionBase>Reduce el tiempo de maduración de los cultivos</descripcionBase>
+            <niveles>
+                <nivel numero="1">
+                    <efecto>Tiempo de maduración normal (×1.0)</efecto>
+                    <multiplicadorTiempo>1.0</multiplicadorTiempo>
+                    <costeMejora>0</costeMejora>
+                </nivel>
+                <nivel numero="2">
+                    <efecto>Los cultivos maduran un 20% más rápido</efecto>
+                    <multiplicadorTiempo>0.8</multiplicadorTiempo>
+                    <costeMejora>100</costeMejora>
+                </nivel>
+                <nivel numero="3">
+                    <efecto>Los cultivos maduran un 40% más rápido</efecto>
+                    <multiplicadorTiempo>0.6</multiplicadorTiempo>
+                    <costeMejora>250</costeMejora>
+                </nivel>
+            </niveles>
+        </herramienta>
+
+        <herramienta id="hoz">
+            <nombre>Hoz</nombre>
+            <icono>🧹</icono>
+            <descripcionBase>Mejora la eficiencia de recolección, más frutos por cosecha</descripcionBase>
+            <niveles>
+                <nivel numero="1">
+                    <efecto>Obtienes 1 fruto por cosecha</efecto>
+                    <unidadesCosecha>1</unidadesCosecha>
+                    <costeMejora>0</costeMejora>
+                </nivel>
+                <nivel numero="2">
+                    <efecto>Obtienes 2 frutos por cosecha en vez de 1</efecto>
+                    <unidadesCosecha>2</unidadesCosecha>
+                    <costeMejora>90</costeMejora>
+                </nivel>
+                <nivel numero="3">
+                    <efecto>Obtienes 3 frutos por cosecha en vez de 1</efecto>
+                    <unidadesCosecha>3</unidadesCosecha>
+                    <costeMejora>220</costeMejora>
+                </nivel>
+            </niveles>
+        </herramienta>
+
+    </herramientas>
+
+</juego>

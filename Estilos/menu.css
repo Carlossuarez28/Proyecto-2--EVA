@@ -1,0 +1,200 @@
+:root {
+    --tierra: #8B5E3C;
+    --pasto: #4A7C3F;
+    --crema: #FDF6E3;
+    --texto: #2C1A0E;
+}
+
+body {
+    font-family: sans-serif;
+    /* Degradado radial para dar profundidad */
+    background: radial-gradient(circle, #3d6e33 0%, #1a3316 100%); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+    position: relative;
+}
+
+/* --- DECORACIÓN DE FONDO (PAISAJE) --- */
+
+/* Colinas al fondo */
+body::before {
+    content: "";
+    position: absolute;
+    bottom: 5vh;
+    left: -10%;
+    width: 120%;
+    height: 35vh;
+    background: #25411d;
+    border-radius: 50% 50% 0 0;
+    z-index: 0;
+}
+
+/* Suelo de pasto */
+body::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 12vh;
+    background: var(--pasto);
+    border-top: 6px solid #3d6e33;
+    z-index: 1;
+}
+
+/* Tarjeta Principal */
+.tarjeta {
+    background: var(--crema);
+    padding: 40px;
+    border-radius: 20px;
+    border: 6px solid var(--tierra);
+    box-shadow: 0 8px 0 rgba(0,0,0,0.2);
+    text-align: center;
+    width: 350px;
+    position: relative;
+    z-index: 10; /* Asegura que esté por encima del paisaje */
+}
+
+.logo-menu {
+    width: 100px;
+    height: auto;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+h1 {
+    color: var(--texto);
+    margin: 0;
+}
+
+.subtitulo {
+    color: var(--tierra);
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Botones */
+.botones {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.btn {
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    color: white;
+    text-decoration: none;
+    transition: transform 0.1s, filter 0.2s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn:active { transform: translateY(3px); }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.btn-nueva { background: var(--pasto); box-shadow: 0 4px 0 #2E5426; }
+.btn-continuar { background: var(--tierra); box-shadow: 0 4px 0 #3A2210; }
+.btn-eliminar { background: #C0392B; box-shadow: 0 4px 0 #922B21; }
+.btn-github { background: #555; box-shadow: 0 4px 0 #333; margin-top: 5px; font-size: 0.9rem; }
+
+/* Modal de Confirmación */
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: none; 
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+}
+
+.overlay.activo { display: flex; }
+
+.modal {
+    background: var(--crema);
+    padding: 30px;
+    border-radius: 15px;
+    border: 4px solid var(--tierra);
+    text-align: center;
+    max-width: 300px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
+
+.modal p {
+    color: var(--texto);
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.modal-botones {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.btn-cancelar-modal, .btn-confirmar-modal {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn-cancelar-modal { background: #ccc; color: #333; }
+.btn-confirmar-modal { background: #C0392B; color: white; }
+
+/* --- ANIMACIÓN DE HOJAS --- */
+
+.hojas-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.hoja {
+    position: absolute;
+    top: -50px;
+    width: 15px;
+    height: 15px;
+    background: #7ca85d;
+    border-radius: 2px 15px;
+    opacity: 0.6;
+    animation: caer 12s linear infinite;
+}
+
+/* Variación de colores para las hojas */
+.hoja:nth-child(even) { background: #5d8a3e; }
+.hoja:nth-child(3n) { background: var(--tierra); opacity: 0.4; }
+
+@keyframes caer {
+    0% { transform: translateY(-10vh) translateX(0) rotate(0deg); }
+    33% { transform: translateY(33vh) translateX(30px) rotate(120deg); }
+    66% { transform: translateY(66vh) translateX(-30px) rotate(240deg); }
+    100% { transform: translateY(110vh) translateX(0) rotate(360deg); }
+}
+
+/* Posiciones y retrasos */
+.hoja:nth-child(1) { left: 5%;  animation-delay: 0s; }
+.hoja:nth-child(2) { left: 15%; animation-delay: 5s; }
+.hoja:nth-child(3) { left: 25%; animation-delay: 2s; }
+.hoja:nth-child(4) { left: 40%; animation-delay: 8s; }
+.hoja:nth-child(5) { left: 55%; animation-delay: 4s; }
+.hoja:nth-child(6) { left: 65%; animation-delay: 1s; }
+.hoja:nth-child(7) { left: 75%; animation-delay: 6s; }
+.hoja:nth-child(8) { left: 85%; animation-delay: 3s; }
+.hoja:nth-child(9) { left: 92%; animation-delay: 9s; }
+.hoja:nth-child(10){ left: 10%; animation-delay: 7s; }
