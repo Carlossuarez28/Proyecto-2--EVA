@@ -5,7 +5,7 @@ const cargarGranjero      = ()  => JSON.parse(localStorage.getItem("granjero"));
 const guardarGranjero     = g   => localStorage.setItem("granjero", JSON.stringify(g));
 const leerHerramientas    = ()  => JSON.parse(localStorage.getItem("herramientas")) || { azada:1, regadera:1, hoz:1 };
 const guardarHerramientas = h   => localStorage.setItem("herramientas", JSON.stringify(h));
-const leerCosecha         = ()  => JSON.parse(localStorage.getItem("cosecha"))      || { Tomate:0, Calabaza:0, Berenjena:0 };
+const leerCosecha         = ()  => JSON.parse(localStorage.getItem("cosecha"))      || { Tomate:0, Calabaza:0, Berenjena:0, Limon:0 };
 const guardarCosecha      = c   => localStorage.setItem("cosecha", JSON.stringify(c));
 const precioVentaReal     = (id, base) => (JSON.parse(localStorage.getItem("preciosAjustados")) || {})[id] ?? base;
 

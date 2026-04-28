@@ -33,6 +33,15 @@
             <precioVentaBase>60</precioVentaBase>
             <descripcion>Tarda más, pero es muy rentable</descripcion>
         </semilla>
+        <semilla id="limon">
+            <nombre>Limon</nombre>
+            <icono>🍋</icono>
+            <tiempoMaduracion>40</tiempoMaduracion>
+            <precioCompra>30</precioCompra>
+            <cantidadPaquete>5</cantidadPaquete>
+            <precioVentaBase>80</precioVentaBase>
+            <descripcion>Tarda más, pero es muy rentable</descripcion>
+        </semilla>
     </semillas>
 
     <!-- ═══════════════════════════════════════

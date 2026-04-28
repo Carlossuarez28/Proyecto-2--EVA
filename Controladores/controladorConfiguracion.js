@@ -90,7 +90,7 @@ $("formConfig").onsubmit = e => {
     if (!validar()) return;
 
     const dif = getVal('dificultad');
-    const semillas = { Tomate: 0, Calabaza: 0, Berenjena: 0 };
+    const semillas = { Tomate: 0, Calabaza: 0, Berenjena: 0, Limon: 0 };
     semillas[inputs.cultivo.value] = 5;
 
     localStorage.setItem("config", JSON.stringify({

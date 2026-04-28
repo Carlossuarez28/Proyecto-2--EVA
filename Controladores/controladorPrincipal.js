@@ -5,13 +5,13 @@ import { saveParcela, loadParcela, saveGranjero, loadGranjero } from "../GestorA
 import { cargarXML, obtenerCatalogo, obtenerNivelHerramienta } from "../gestorXML.js";
 
 //Constantes visuales
-const ICONOS = { Tomate:"🍅", Calabaza:"🎃", Berenjena:"🍆", brote:"🌱" };
+const ICONOS = { Tomate:"🍅", Calabaza:"🎃", Berenjena:"🍆", Limon:"🍋", brote:"🌱" };
 const ENERGIA_POR_SIEMBRA  = 10;
 const RECUPERACION_ENERGIA = { facil:3, normal:5, dificil:10 };
 
 //localStorage helpers
 const leerHerramientas = () => JSON.parse(localStorage.getItem("herramientas")) || { azada:1, regadera:1, hoz:1 };
-const leerCosecha      = () => JSON.parse(localStorage.getItem("cosecha"))      || { Tomate:0, Calabaza:0, Berenjena:0 };
+const leerCosecha      = () => JSON.parse(localStorage.getItem("cosecha"))      || { Tomate:0, Calabaza:0, Berenjena:0, Limon:0 };
 const guardarCosecha   = c  => localStorage.setItem("cosecha", JSON.stringify(c));
 
 //Efectos de herramientas (datos desde XML)
@@ -51,7 +51,7 @@ cargarXML().then(() => {
     setInterval(renderizar, 1000);
 
     get("botonRecargar").onclick = () => {
-        ["Tomate","Calabaza","Berenjena"].forEach(k => granjero.semillas[k] += 10);
+        ["Tomate","Calabaza","Berenjena","Limon"].forEach(k => granjero.semillas[k] += 10);
         renderizar();
     };
     get("botonTienda").onclick = () => { saveParcela(parcelas); saveGranjero(granjero); location.href = "tienda.html"; };
@@ -93,7 +93,7 @@ function renderizar() {
     }
 
     //Selector e inventario semillas
-    const nombres = ["Tomate","Calabaza","Berenjena"];
+    const nombres = ["Tomate","Calabaza","Berenjena","Limon"];
     const sel = get("selectorSemillas");
     nombres.forEach((n, i) => sel.options[i].text = `${n} (${granjero.semillas[n]})`);
     nombres.forEach(n => {
